@@ -2,7 +2,11 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import CategorySelect from 'components/CategorySelect/CategorySelect';
 
-const AddTransactionForm = ({ categories, onSubmitBtnClick }) => {
+const TransactionForm = ({
+  categories,
+  onSubmitBtnClick,
+  transaction = { category: '', sum: '' },
+}) => {
   const validationSchema = yup.object().shape({
     category: yup.string().required('Category is required'),
     sum: yup
@@ -14,8 +18,8 @@ const AddTransactionForm = ({ categories, onSubmitBtnClick }) => {
   const { handleSubmit, values, handleChange, errors, touched, resetForm } =
     useFormik({
       initialValues: {
-        category: '',
-        sum: '',
+        category: transaction.category,
+        sum: transaction.sum,
       },
       validationSchema,
       onSubmit: values => {
@@ -43,9 +47,9 @@ const AddTransactionForm = ({ categories, onSubmitBtnClick }) => {
           onChange={handleChange}
         />
       </label>
-      <button type="submit">Add credit</button>
+      <button type="submit">Submit</button>
     </form>
   );
 };
 
-export default AddTransactionForm;
+export default TransactionForm;

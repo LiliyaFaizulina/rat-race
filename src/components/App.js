@@ -6,6 +6,9 @@ import { getCredits } from 'redux/credits/creditsOperations';
 import { PATH_ROUTES } from 'constants';
 import Layout from './Layout/Layout';
 import { selectIsAuth } from 'redux/auth/authSelectors';
+import { getIncome } from 'redux/income/incomeOperations';
+import { getExpenses } from 'redux/expenses/expensesOperations';
+import { getEquities } from 'redux/equities/equitiesOperations';
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage/RegisterPage'));
@@ -19,9 +22,19 @@ const EquitiesPage = lazy(() => import('../pages/EquitiesPage/EquitiesPage'));
 const App = () => {
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
+  // useEffect(() => {
+  //   dispatch(getCurrentGamer());
+  // }, [dispatch]);
+
   useEffect(() => {
-    dispatch(getCurrentGamer());
-    dispatch(getCredits());
+    if (!isAuth) {
+      dispatch(getCurrentGamer());
+    } else {
+      dispatch(getCredits());
+      dispatch(getIncome());
+      dispatch(getExpenses());
+      dispatch(getEquities());
+    }
   }, [dispatch, isAuth]);
 
   return (
