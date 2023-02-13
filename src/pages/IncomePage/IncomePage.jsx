@@ -4,13 +4,14 @@ import {
   deleteIncome,
   updateIncome,
 } from 'redux/income/incomeOperations';
-import { selectIncome } from 'redux/income/incomeSelectors';
+import { selectSortedIncome } from 'redux/income/incomeSelectors';
 import { INCOME_CATEGORIES } from 'constants';
 import TransactionForm from 'components/TransactionForm/TransactionForm';
 import TransactionList from 'components/TransactionList/TransactionList';
+import Section from 'components/Section/Section';
 
 const IncomePage = () => {
-  const income = useSelector(selectIncome);
+  const income = useSelector(selectSortedIncome);
   const dispatch = useDispatch();
   const onSubmitBtnClick = data => {
     dispatch(addIncome(data));
@@ -23,8 +24,7 @@ const IncomePage = () => {
     dispatch(deleteIncome(id));
   };
   return (
-    <div>
-      <h2>Income</h2>
+    <Section text="Income">
       <TransactionForm
         categories={INCOME_CATEGORIES}
         onSubmitBtnClick={onSubmitBtnClick}
@@ -37,7 +37,7 @@ const IncomePage = () => {
           deleteTransaction={deleteTransaction}
         />
       )}
-    </div>
+    </Section>
   );
 };
 

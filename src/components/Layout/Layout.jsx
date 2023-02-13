@@ -9,7 +9,11 @@ const Layout = () => {
   const isAuth = useSelector(selectIsAuth);
   return (
     <>
-      <header>{isAuth ? <UserMenu /> : <AuthNav />}</header>
+      <header>
+        <nav className="tabs is-centered">
+          {isAuth ? <UserMenu /> : <AuthNav />}
+        </nav>
+      </header>
       <Suspense fallback={<p>Loading ...</p>}>
         <Outlet />
       </Suspense>

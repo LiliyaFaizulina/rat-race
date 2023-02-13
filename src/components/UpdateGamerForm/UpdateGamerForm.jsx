@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { RxCheck } from 'react-icons/rx';
 
 const UpdateGamerForm = ({
   fieldName,
@@ -41,7 +42,9 @@ const UpdateGamerForm = ({
           onChange={handleChange}
         />
       </label>
-      <button type="submit">Update</button>
+      <button type="submit">
+        <RxCheck />
+      </button>
     </form>
   );
 };

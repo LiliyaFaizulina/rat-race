@@ -4,9 +4,10 @@ import {
   deleteCredit,
   updateCredit,
 } from 'redux/credits/creditsOperations';
+import { selectCredits } from 'redux/credits/creditsSelectors';
+import Section from 'components/Section/Section';
 import CreditList from 'components/CreditList/CreditList';
 import AddCreditForm from 'components/AddCreditForm/AddCreditForm';
-import { selectCredits } from 'redux/credits/creditsSelectors';
 
 const CreditsPage = () => {
   const dispatch = useDispatch();
@@ -27,8 +28,7 @@ const CreditsPage = () => {
   };
 
   return (
-    <div>
-      <h2>Credits</h2>
+    <Section text="CREDITS">
       <AddCreditForm onSubmitBtnClick={onSubmitBtnClick} />
       {credits.length > 0 && (
         <CreditList
@@ -37,7 +37,7 @@ const CreditsPage = () => {
           credits={credits}
         />
       )}
-    </div>
+    </Section>
   );
 };
 

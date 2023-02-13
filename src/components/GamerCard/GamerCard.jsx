@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { RxUpdate } from 'react-icons/rx';
 import Button from 'components/Buttons/Button';
 import UpdateGamerForm from 'components/UpdateGamerForm/UpdateGamerForm';
 import { useDispatch } from 'react-redux';
@@ -41,7 +42,9 @@ const GamerCard = ({ data }) => {
           ) : (
             <>
               <span>{data[fieldName]}</span>
-              <Button text="Change" handleClick={() => showInput(fieldName)} />
+              <Button handleClick={() => showInput(fieldName)}>
+                <RxUpdate className="icon" />
+              </Button>
             </>
           )}
         </li>

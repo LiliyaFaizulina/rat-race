@@ -8,6 +8,7 @@ import { selectExpenses } from 'redux/expenses/expensesSelectors';
 import { EXPENSE_CATEGORIES } from 'constants';
 import TransactionForm from 'components/TransactionForm/TransactionForm';
 import TransactionList from 'components/TransactionList/TransactionList';
+import Section from 'components/Section/Section';
 
 const ExpensesPage = () => {
   const expenses = useSelector(selectExpenses);
@@ -23,8 +24,7 @@ const ExpensesPage = () => {
     dispatch(deleteExpense(id));
   };
   return (
-    <div>
-      <h2>Expenses</h2>
+    <Section text="Expenses">
       <TransactionForm
         categories={EXPENSE_CATEGORIES}
         onSubmitBtnClick={onSubmitBtnClick}
@@ -37,7 +37,7 @@ const ExpensesPage = () => {
           deleteTransaction={deleteTransaction}
         />
       )}
-    </div>
+    </Section>
   );
 };
 

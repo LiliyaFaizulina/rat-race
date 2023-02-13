@@ -1,3 +1,5 @@
+import { RxUpdate } from 'react-icons/rx';
+import { MdDeleteForever } from 'react-icons/md';
 import Button from 'components/Buttons/Button';
 import TransactionForm from 'components/TransactionForm/TransactionForm';
 import { useState } from 'react';
@@ -18,8 +20,12 @@ const Transaction = ({
     <li>
       <span>{data.category}</span>
       <span>{data.sum}</span>
-      <Button text="update" handleClick={() => setTransactionToUpdate(data)} />
-      <Button text="delete" handleClick={() => deleteTransaction(data._id)} />
+      <Button handleClick={() => setTransactionToUpdate(data)}>
+        <RxUpdate className="icon" />
+      </Button>
+      <Button handleClick={() => deleteTransaction(data._id)}>
+        <MdDeleteForever className="icon" />
+      </Button>
       {transactionToUpdate && (
         <TransactionForm
           categories={categories}

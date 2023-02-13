@@ -1,3 +1,4 @@
+import { MdDeleteForever } from 'react-icons/md';
 import Button from 'components/Buttons/Button';
 
 const Equity = ({ item, onDeleteBtnClick }) => {
@@ -8,7 +9,9 @@ const Equity = ({ item, onDeleteBtnClick }) => {
       <span>{quantity}</span>
       <span>{price}</span>
       <span>{quantity * price}</span>
-      <Button text="Delete" handleClick={() => onDeleteBtnClick(_id)} />
+      <Button handleClick={() => onDeleteBtnClick(_id)}>
+        <MdDeleteForever className="icon" />
+      </Button>
     </>
   );
 };

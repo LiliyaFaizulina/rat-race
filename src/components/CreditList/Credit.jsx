@@ -1,4 +1,5 @@
 import Button from 'components/Buttons/Button';
+import { MdDeleteForever, MdOutlinePayments } from 'react-icons/md';
 
 const Credit = ({ item, onPayBtnClick, onDeleteBtnClick }) => {
   const { _id, name, cost, monthlyFee } = item;
@@ -7,8 +8,12 @@ const Credit = ({ item, onPayBtnClick, onDeleteBtnClick }) => {
       <p>{name}</p>
       <p>{cost}</p>
       <p>{monthlyFee}</p>
-      <Button text="Pay" handleClick={() => onPayBtnClick(item)} />
-      <Button text="Delete" handleClick={() => onDeleteBtnClick(_id)} />
+      <Button handleClick={() => onPayBtnClick(item)}>
+        <MdOutlinePayments className="icon" />
+      </Button>
+      <Button handleClick={() => onDeleteBtnClick(_id)}>
+        <MdDeleteForever className="icon" />
+      </Button>
     </>
   );
 };

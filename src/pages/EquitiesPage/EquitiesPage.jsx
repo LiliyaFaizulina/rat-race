@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { addEquity, deleteEquity } from 'redux/equities/equitiesOperations';
-import { selectEquities } from 'redux/equities/equitiesSelectors';
+import { selectSortedEquities } from 'redux/equities/equitiesSelectors';
 import { EQUITY_CODE } from 'constants';
 import AddEquityForm from 'components/AddEquityForm/AddEquityForm';
 import EquityList from 'components/EquityList/EquityList';
+import Section from 'components/Section/Section';
 
 const EquitiesPage = () => {
-  const equities = useSelector(selectEquities);
+  const equities = useSelector(selectSortedEquities);
   const dispatch = useDispatch();
   const onSubmitBtnClick = data => {
     dispatch(addEquity(data));
@@ -16,8 +17,7 @@ const EquitiesPage = () => {
   };
 
   return (
-    <div>
-      <h2>Equities</h2>{' '}
+    <Section text="Equities">
       <AddEquityForm
         categories={EQUITY_CODE}
         onSubmitBtnClick={onSubmitBtnClick}
@@ -25,7 +25,7 @@ const EquitiesPage = () => {
       {equities.length > 0 && (
         <EquityList equities={equities} onDeleteBtnClick={onDeleteBtnClick} />
       )}
-    </div>
+    </Section>
   );
 };
 
