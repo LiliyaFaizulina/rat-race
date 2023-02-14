@@ -1,19 +1,23 @@
 import Button from 'components/Buttons/Button';
 import { MdDeleteForever, MdOutlinePayments } from 'react-icons/md';
 
-const Credit = ({ item, onPayBtnClick, onDeleteBtnClick }) => {
+const Credit = ({ item, onPayBtnClick, onDeleteBtnClick, mainColor }) => {
   const { _id, name, cost, monthlyFee } = item;
   return (
     <>
-      <p>{name}</p>
-      <p>{cost}</p>
-      <p>{monthlyFee}</p>
-      <Button handleClick={() => onPayBtnClick(item)}>
-        <MdOutlinePayments className="icon" />
-      </Button>
-      <Button handleClick={() => onDeleteBtnClick(_id)}>
-        <MdDeleteForever className="icon" />
-      </Button>
+      <td>{name}</td>
+      <td>{cost}</td>
+      <td>{monthlyFee}</td>
+      <td className="text-align">
+        <Button handleClick={() => onPayBtnClick(item)} mainColor={mainColor}>
+          <MdOutlinePayments className="icon" />
+        </Button>
+      </td>
+      <td className="text-align">
+        <Button handleClick={() => onDeleteBtnClick(_id)} mainColor={mainColor}>
+          <MdDeleteForever className="icon" />
+        </Button>
+      </td>
     </>
   );
 };

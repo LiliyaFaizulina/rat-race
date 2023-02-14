@@ -27,16 +27,24 @@ const CreditsPage = () => {
     dispatch(addCredit(values));
   };
 
+  const mainColor = 'warning';
+
   return (
-    <Section text="CREDITS">
-      <AddCreditForm onSubmitBtnClick={onSubmitBtnClick} />
-      {credits.length > 0 && (
+    <Section text="credits" mainColor={mainColor}>
+      <div className={`box has-background-${mainColor}-dark`}>
+        <AddCreditForm
+          onSubmitBtnClick={onSubmitBtnClick}
+          mainColor={mainColor}
+        />
+      </div>
+      <div className={`box has-min-height has-background-${mainColor}`}>
         <CreditList
           onPayBtnClick={onPayBtnClick}
           onDeleteBtnClick={onDeleteBtnClick}
           credits={credits}
+          mainColor={mainColor}
         />
-      )}
+      </div>
     </Section>
   );
 };

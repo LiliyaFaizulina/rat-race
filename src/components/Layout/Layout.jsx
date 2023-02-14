@@ -8,16 +8,16 @@ import UserMenu from 'components/Navigation/UserMenu';
 const Layout = () => {
   const isAuth = useSelector(selectIsAuth);
   return (
-    <>
+    <div className="has-background-warning-light has-full-height">
       <header>
-        <nav className="tabs is-centered">
+        <nav className="tabs is-fullwidth is-boxed is-centered has-background-warning pt-2">
           {isAuth ? <UserMenu /> : <AuthNav />}
         </nav>
       </header>
       <Suspense fallback={<p>Loading ...</p>}>
         <Outlet />
       </Suspense>
-    </>
+    </div>
   );
 };
 

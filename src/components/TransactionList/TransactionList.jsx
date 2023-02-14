@@ -2,27 +2,34 @@ import Transaction from './Transaction';
 
 const TransactionList = ({
   items,
-  updateTransaction,
+  openUpdateModal,
   deleteTransaction,
-  categories,
+  mainColor,
 }) => {
   return (
-    <ul>
-      <li>
-        <span>Name</span>
-        <span>Sum</span>
-        <span>todo</span>
-      </li>
-      {items.map(item => (
-        <Transaction
-          key={item._id}
-          data={item}
-          updateTransaction={updateTransaction}
-          deleteTransaction={deleteTransaction}
-          categories={categories}
-        />
-      ))}
-    </ul>
+    <table className="table is-fullwidth">
+      <thead className={`has-background-${mainColor}`}>
+        <tr>
+          <th>Category</th>
+          <th>Sum</th>
+          <th className="text-align">Upd</th>
+          <th className="text-align">Del</th>
+        </tr>
+      </thead>
+      {items.length > 0 && (
+        <tbody>
+          {items.map(item => (
+            <Transaction
+              key={item._id}
+              data={item}
+              openUpdateModal={openUpdateModal}
+              deleteTransaction={deleteTransaction}
+              mainColor={mainColor}
+            />
+          ))}
+        </tbody>
+      )}
+    </table>
   );
 };
 

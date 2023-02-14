@@ -2,8 +2,10 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { STATE_NAME } from 'constants';
 
+const { REACT_APP_API_URL } = process.env;
+
 export const instance = axios.create({
-  baseURL: 'http://localhost:7000/api',
+  baseURL: REACT_APP_API_URL,
 });
 
 const token = {

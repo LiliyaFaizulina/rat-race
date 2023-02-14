@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   addIncome,
@@ -11,32 +12,64 @@ import TransactionList from 'components/TransactionList/TransactionList';
 import Section from 'components/Section/Section';
 
 const IncomePage = () => {
+  const [transactionToUpdate, setTransactionToUpdate] = useState(null);
   const income = useSelector(selectSortedIncome);
   const dispatch = useDispatch();
+
   const onSubmitBtnClick = data => {
     dispatch(addIncome(data));
   };
 
-  const updateTransaction = data => {
-    dispatch(updateIncome(data));
+  const updateTransaction = values => {
+    if (
+      values.category !== transactionToUpdate.category ||
+      values.sum !== transactionToUpdate.sum
+    ) {
+      const data = { id: transactionToUpdate._id, body: values };
+      dispatch(updateIncome(data));
+    }
+    setTransactionToUpdate(null);
   };
+
   const deleteTransaction = id => {
     dispatch(deleteIncome(id));
   };
+
+  const openUpdateModal = data => {
+    setTransactionToUpdate(data);
+  };
+
+  const mainColor = 'success';
   return (
-    <Section text="Income">
-      <TransactionForm
-        categories={INCOME_CATEGORIES}
-        onSubmitBtnClick={onSubmitBtnClick}
-      />
-      {income.length > 0 && (
-        <TransactionList
+    <Section text="Income" mainColor={mainColor}>
+      <div className={`box has-background-${mainColor}-dark`}>
+        <TransactionForm
           categories={INCOME_CATEGORIES}
-          items={income}
-          updateTransaction={updateTransaction}
-          deleteTransaction={deleteTransaction}
+          onSubmitBtnClick={onSubmitBtnClick}
+          mainColor={mainColor}
+          btnText="Add income"
         />
-      )}
+      </div>
+      <div
+        className={`box is-relative has-min-height has-background-${mainColor}`}
+      >
+        <TransactionList
+          items={income}
+          openUpdateModal={openUpdateModal}
+          deleteTransaction={deleteTransaction}
+          mainColor={mainColor}
+        />
+        {transactionToUpdate && (
+          <TransactionForm
+            classes={`box is-absolute-centered has-background-${mainColor}`}
+            categories={INCOME_CATEGORIES}
+            onSubmitBtnClick={updateTransaction}
+            transaction={transactionToUpdate}
+            btnText="Save changes"
+            mainColor={mainColor}
+          />
+        )}
+      </div>
     </Section>
   );
 };

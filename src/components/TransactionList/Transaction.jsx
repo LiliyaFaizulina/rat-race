@@ -1,39 +1,37 @@
 import { RxUpdate } from 'react-icons/rx';
 import { MdDeleteForever } from 'react-icons/md';
 import Button from 'components/Buttons/Button';
-import TransactionForm from 'components/TransactionForm/TransactionForm';
-import { useState } from 'react';
+import { chooseCategoryColor } from 'helpers';
 
 const Transaction = ({
   data,
-  updateTransaction,
+  openUpdateModal,
   deleteTransaction,
-  categories,
+  mainColor,
 }) => {
-  const [transactionToUpdate, setTransactionToUpdate] = useState(null);
-  const onSubmitBtnClick = values => {
-    const data = { id: transactionToUpdate._id, body: values };
-    updateTransaction(data);
-    setTransactionToUpdate(null);
-  };
+  const { _id, category, sum } = data;
   return (
-    <li>
-      <span>{data.category}</span>
-      <span>{data.sum}</span>
-      <Button handleClick={() => setTransactionToUpdate(data)}>
-        <RxUpdate className="icon" />
-      </Button>
-      <Button handleClick={() => deleteTransaction(data._id)}>
-        <MdDeleteForever className="icon" />
-      </Button>
-      {transactionToUpdate && (
-        <TransactionForm
-          categories={categories}
-          onSubmitBtnClick={onSubmitBtnClick}
-          transaction={transactionToUpdate}
-        />
-      )}
-    </li>
+    <tr
+      className={`has-background-${chooseCategoryColor(
+        category
+      )}-light has-text-${chooseCategoryColor(category)}`}
+    >
+      <td>{category}</td>
+      <td>{sum}</td>
+      <td className="text-align">
+        <Button handleClick={() => openUpdateModal(data)} mainColor={mainColor}>
+          <RxUpdate className="icon" />
+        </Button>
+      </td>
+      <td className="text-align">
+        <Button
+          handleClick={() => deleteTransaction(_id)}
+          mainColor={mainColor}
+        >
+          <MdDeleteForever className="icon" />
+        </Button>
+      </td>
+    </tr>
   );
 };
 

@@ -5,7 +5,9 @@ const AuthNav = () => {
   return (
     <ul>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/" end>
+          Home
+        </NavLink>
       </li>
       <li>
         <NavLink to={PATH_ROUTES.register}>Register</NavLink>

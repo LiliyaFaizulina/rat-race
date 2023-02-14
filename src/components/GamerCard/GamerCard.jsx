@@ -5,7 +5,7 @@ import UpdateGamerForm from 'components/UpdateGamerForm/UpdateGamerForm';
 import { useDispatch } from 'react-redux';
 import { updateGamer } from 'redux/auth/authOperations';
 
-const GamerCard = ({ data }) => {
+const GamerCard = ({ data, mainColor }) => {
   const [fieldToUpdate, setFieldToUpdate] = useState(null);
   const dispatch = useDispatch();
   const cardFields = [
@@ -28,10 +28,17 @@ const GamerCard = ({ data }) => {
     setFieldToUpdate(data);
   };
   return (
-    <ul>
+    <ul className={`box has-background-${mainColor}`}>
       {cardFields.map(({ fieldName, fieldType, name }, index) => (
-        <li key={index}>
-          <span>{name}:</span>
+        <li
+          key={index}
+          className={`columns is-mobile m-0 has-background-${mainColor}-light is-align-items-center`}
+        >
+          <div
+            className={`column is-one-third m-0 has-background-${mainColor}`}
+          >
+            {name}:
+          </div>
           {fieldToUpdate && fieldToUpdate === fieldName ? (
             <UpdateGamerForm
               fieldValue={data[fieldName]}
@@ -41,10 +48,13 @@ const GamerCard = ({ data }) => {
             />
           ) : (
             <>
-              <span>{data[fieldName]}</span>
-              <Button handleClick={() => showInput(fieldName)}>
-                <RxUpdate className="icon" />
-              </Button>
+              <div className="column auto">{data[fieldName]}</div>
+              <button
+                onClick={() => showInput(fieldName)}
+                className={`column is-one-fifth button is-flex is-${mainColor} is-inverted has-background-${mainColor}-light`}
+              >
+                <RxUpdate className="icon is-small" />
+              </button>
             </>
           )}
         </li>

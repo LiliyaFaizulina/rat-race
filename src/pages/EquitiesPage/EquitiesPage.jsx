@@ -15,16 +15,23 @@ const EquitiesPage = () => {
   const onDeleteBtnClick = id => {
     dispatch(deleteEquity(id));
   };
-
+  const mainColor = 'info';
   return (
-    <Section text="Equities">
-      <AddEquityForm
-        categories={EQUITY_CODE}
-        onSubmitBtnClick={onSubmitBtnClick}
-      />
-      {equities.length > 0 && (
-        <EquityList equities={equities} onDeleteBtnClick={onDeleteBtnClick} />
-      )}
+    <Section text="Equities" mainColor={mainColor}>
+      <div className={`box has-background-${mainColor}-dark`}>
+        <AddEquityForm
+          categories={EQUITY_CODE}
+          onSubmitBtnClick={onSubmitBtnClick}
+          mainColor={mainColor}
+        />
+      </div>
+      <div className={`box has-min-height has-background-${mainColor}`}>
+        <EquityList
+          equities={equities}
+          onDeleteBtnClick={onDeleteBtnClick}
+          mainColor={mainColor}
+        />
+      </div>
     </Section>
   );
 };

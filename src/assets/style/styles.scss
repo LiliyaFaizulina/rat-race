@@ -1,9 +1,42 @@
 .tabs a.active{
-    color: tomato;
-    border-bottom: 2px solid tomato;
+    color: hsl(48, 100%, 67%);
+    background-color: hsl(48, 100%, 96%);
+    border-color: transparent;
+    &:hover, &:focus {
+        background-color: hsl(48, 100%, 96%);
+        border-color: transparent;
+    }
 }
 
+.table .text-align, .table th.text-align {
+    text-align: end;
+}
 .subtitle {
     text-transform: uppercase;
     text-align: center;
+}
+
+.is-relative {
+    position: relative;
+}
+
+.is-absolute {
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+}
+.is-absolute-centered {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.has-min-height {
+    min-height: 280px;
+}
+
+.has-full-height {
+    min-height: 100vh;
 }

@@ -8,9 +8,12 @@ const RegisterPage = () => {
   const handleSubmit = values => {
     dispatch(register(values));
   };
+  const mainColor = 'primary';
   return (
-    <Section text="Registration">
-      <AuthForm onSubmitBtnClick={handleSubmit} />
+    <Section text="Registration" mainColor={mainColor}>
+      <div className={`box has-background-${mainColor}`}>
+        <AuthForm onSubmitBtnClick={handleSubmit} mainColor={mainColor} />
+      </div>
     </Section>
   );
 };

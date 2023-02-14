@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 
-const AuthForm = ({ onSubmitBtnClick }) => {
+const AuthForm = ({ onSubmitBtnClick, mainColor }) => {
   const validationSchema = yup.object().shape({
     name: yup
       .string()
@@ -10,11 +10,11 @@ const AuthForm = ({ onSubmitBtnClick }) => {
       .max(7, 'Max seven letters'),
     password: yup
       .string()
-      .required('Name is required')
+      .required('Password is required')
       .min(4, 'Min 4 characters')
       .max(10, 'Max 10 characters'),
   });
-  const { handleSubmit, values, handleChange, errors, touched } = useFormik({
+  const { handleSubmit, values, handleChange, errors } = useFormik({
     initialValues: {
       name: '',
       password: '',
@@ -26,26 +26,40 @@ const AuthForm = ({ onSubmitBtnClick }) => {
   });
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Name{' '}
+      <div className="field is-relative pb-2 mb-1">
+        <label className="label" htmlFor="name">
+          Name
+        </label>
         <input
-          className="input is-primary"
+          id="name"
+          className={`input is-${mainColor}`}
           type="text"
           name="name"
           value={values.name}
           onChange={handleChange}
         />
-      </label>
-      <label>
-        Password{' '}
+        <p className="help is-absolute has-text-grey">{errors.name}</p>
+      </div>
+      <div className="field is-relative pb-2 mb-1">
+        <label className="label" htmlFor="password">
+          Password
+        </label>
         <input
+          id="password"
+          className={`input is-${mainColor}`}
           type="password"
           name="password"
           value={values.password}
           onChange={handleChange}
         />
-      </label>
-      <button type="submit">Submit</button>
+        <p className="help is-absolute has-text-grey">{errors.password}</p>
+      </div>
+      <button
+        type="submit"
+        className={`button is-${mainColor} is-light is-fullwidth mt-5`}
+      >
+        Submit
+      </button>
     </form>
   );
 };

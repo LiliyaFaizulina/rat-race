@@ -1,18 +1,25 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectGamer } from 'redux/auth/authSelectors';
 import { selectIncome } from 'redux/income/incomeSelectors';
 import { selectExpenses } from 'redux/expenses/expensesSelectors';
 import { selectCredits } from 'redux/credits/creditsSelectors';
+import { logout } from 'redux/auth/authOperations';
 
 import GamerCard from 'components/GamerCard/GamerCard';
 import GamerWallet from 'components/GamerWallet/GamerWallet';
 import Section from 'components/Section/Section';
+import Button from 'components/Buttons/Button';
 
 const GamerPage = () => {
   const gamer = useSelector(selectGamer);
   const income = useSelector(selectIncome);
   const expenses = useSelector(selectExpenses);
   const credits = useSelector(selectCredits);
+  const dispatch = useDispatch();
+
+  const onBtnLogoutClick = () => {
+    dispatch(logout());
+  };
 
   const amountOfChildren = gamer.children;
   let cashFlow = 0;
@@ -46,15 +53,23 @@ const GamerPage = () => {
   }
 
   const totalExpenses = creditFee + otherExpenses;
+  const mainColor = 'primary';
 
   return (
-    <Section text="Gamer">
-      <GamerCard data={gamer} />
+    <Section text="Gamer" mainColor={mainColor}>
+      <GamerCard data={gamer} mainColor={mainColor} />
       <GamerWallet
         totalExpenses={totalExpenses}
         salary={salary}
         cashFlow={cashFlow}
+        mainColor={mainColor}
       />
+      <div className="box is-flex is-justify-content-end">
+        <p className="mr-5">To create new gamer you should logout</p>
+        <Button handleClick={onBtnLogoutClick} mainColor={mainColor}>
+          Logout
+        </Button>
+      </div>
     </Section>
   );
 };

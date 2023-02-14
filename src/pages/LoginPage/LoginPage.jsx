@@ -8,9 +8,12 @@ const LoginPage = () => {
   const handleSubmit = values => {
     dispatch(login(values));
   };
+  const mainColor = 'warning';
   return (
-    <Section text="Login">
-      <AuthForm onSubmitBtnClick={handleSubmit} />
+    <Section text="Login" mainColor={mainColor}>
+      <div className={`box has-background-${mainColor}`}>
+        <AuthForm onSubmitBtnClick={handleSubmit} mainColor={mainColor} />
+      </div>
     </Section>
   );
 };

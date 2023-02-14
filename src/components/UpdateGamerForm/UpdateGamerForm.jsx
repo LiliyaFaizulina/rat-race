@@ -33,17 +33,24 @@ const UpdateGamerForm = ({
       },
     });
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form
+      onSubmit={handleSubmit}
+      className="columns column is-mobile is-two-third p-0 m-0"
+    >
+      <label className="column is-8 p-0">
         <input
+          className="input is-primary"
           type={fieldType}
           name={fieldName}
           value={values[fieldName]}
           onChange={handleChange}
         />
       </label>
-      <button type="submit">
-        <RxCheck />
+      <button
+        type="submit"
+        className="button is-primary is-outlined is-flex column is-auto ml-2"
+      >
+        <RxCheck className="icon" />
       </button>
     </form>
   );
