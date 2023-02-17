@@ -5,7 +5,7 @@ const HomePage = () => {
   const mainColor = 'primary';
   return (
     <section className="section">
-      <div className="container">
+      <div className="container is-max-desktop">
         <h1 className="title has-text-centered is-size-4-desktop  is-family-monospace is-italic">
           Rat race
         </h1>
