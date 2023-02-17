@@ -4,7 +4,7 @@ import { selectIncome } from 'redux/income/incomeSelectors';
 import { selectExpenses } from 'redux/expenses/expensesSelectors';
 import { selectCredits } from 'redux/credits/creditsSelectors';
 import { logout } from 'redux/auth/authOperations';
-
+import Rat from 'assets/images/rat3.png';
 import GamerCard from 'components/GamerCard/GamerCard';
 import GamerWallet from 'components/GamerWallet/GamerWallet';
 import Section from 'components/Section/Section';
@@ -56,8 +56,16 @@ const GamerPage = () => {
   const mainColor = 'primary';
 
   return (
-    <Section text="Gamer" mainColor={mainColor}>
-      <GamerCard data={gamer} mainColor={mainColor} />
+    <Section text="Player" mainColor={mainColor}>
+      <div className="columns m-0 mb-5">
+        <GamerCard data={gamer} mainColor={mainColor} />
+        <div className="column p-0 is-one-quarter is-hidden-mobile is-align-self-flex-end">
+          <figure className="image is-128x128 ml-auto">
+            <img src={Rat} alt="Rat" />
+          </figure>
+        </div>
+      </div>
+
       <GamerWallet
         totalExpenses={totalExpenses}
         salary={salary}
@@ -65,7 +73,7 @@ const GamerPage = () => {
         mainColor={mainColor}
       />
       <div className="box is-flex is-justify-content-end">
-        <p className="mr-5">To create new gamer you should logout</p>
+        <p className="mr-5">To create new player you should logout</p>
         <Button handleClick={onBtnLogoutClick} mainColor={mainColor}>
           Logout
         </Button>

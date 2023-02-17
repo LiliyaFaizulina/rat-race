@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { RxUpdate } from 'react-icons/rx';
-import Button from 'components/Buttons/Button';
+
 import UpdateGamerForm from 'components/UpdateGamerForm/UpdateGamerForm';
 import { useDispatch } from 'react-redux';
 import { updateGamer } from 'redux/auth/authOperations';
@@ -28,7 +28,7 @@ const GamerCard = ({ data, mainColor }) => {
     setFieldToUpdate(data);
   };
   return (
-    <ul className={`box has-background-${mainColor}`}>
+    <ul className={`box has-background-${mainColor} column mb-0`}>
       {cardFields.map(({ fieldName, fieldType, name }, index) => (
         <li
           key={index}

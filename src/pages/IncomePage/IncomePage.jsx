@@ -10,6 +10,7 @@ import { INCOME_CATEGORIES } from 'constants';
 import TransactionForm from 'components/TransactionForm/TransactionForm';
 import TransactionList from 'components/TransactionList/TransactionList';
 import Section from 'components/Section/Section';
+import Rat from 'assets/images/rat2.png';
 
 const IncomePage = () => {
   const [transactionToUpdate, setTransactionToUpdate] = useState(null);
@@ -42,13 +43,20 @@ const IncomePage = () => {
   const mainColor = 'success';
   return (
     <Section text="Income" mainColor={mainColor}>
-      <div className={`box has-background-${mainColor}-dark`}>
-        <TransactionForm
-          categories={INCOME_CATEGORIES}
-          onSubmitBtnClick={onSubmitBtnClick}
-          mainColor={mainColor}
-          btnText="Add income"
-        />
+      <div className="columns m-0 mb-5">
+        <div className={`box has-background-${mainColor}-dark column mb-0`}>
+          <TransactionForm
+            categories={INCOME_CATEGORIES}
+            onSubmitBtnClick={onSubmitBtnClick}
+            mainColor={mainColor}
+            btnText="Add income"
+          />
+        </div>
+        <div className="column p-0 is-one-quarter is-hidden-mobile is-align-self-flex-end">
+          <figure className="image is-128x128 ml-auto is-flex is-align-items-end">
+            <img src={Rat} alt="Rat" />
+          </figure>
+        </div>
       </div>
       <div
         className={`box is-relative has-min-height has-background-${mainColor}`}

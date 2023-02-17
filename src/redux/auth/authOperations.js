@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { STATE_NAME } from 'constants';
+import { toast } from 'react-toastify';
 
 const { REACT_APP_API_URL } = process.env;
 
@@ -26,8 +27,11 @@ export const register = createAsyncThunk(
         gamerData
       );
       token.set(data.token);
+      toast.success(`Welcome ${data.gamer.name}!`);
       return data;
     } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
       return rejectWithValue(error.message);
     }
   }
@@ -42,8 +46,10 @@ export const login = createAsyncThunk(
         gamerData
       );
       token.set(data.token);
+      toast.success(`Welcome ${data.gamer.name}!`);
       return data;
     } catch (error) {
+      toast.error(error.response.data.message);
       return rejectWithValue(error.message);
     }
   }
@@ -55,7 +61,9 @@ export const logout = createAsyncThunk(
     try {
       await instance.get(`/${STATE_NAME.auth}/logout`);
       token.unset();
+      toast.success('Logout was successful');
     } catch (error) {
+      toast.error(error.response.data.message);
       return rejectWithValue(error.message);
     }
   }
@@ -86,8 +94,10 @@ export const updateGamer = createAsyncThunk(
         `/${STATE_NAME.auth}/gamer`,
         gamerData
       );
+      toast.success('Update successful!');
       return data;
     } catch (error) {
+      toast.error(error.response.data.message);
       return rejectWithValue(error.message);
     }
   }

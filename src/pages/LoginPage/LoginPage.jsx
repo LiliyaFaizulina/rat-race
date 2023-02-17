@@ -11,7 +11,7 @@ const LoginPage = () => {
   const mainColor = 'warning';
   return (
     <Section text="Login" mainColor={mainColor}>
-      <div className={`box has-background-${mainColor}`}>
+      <div className={`box has-background-${mainColor} has-max-width mx-auto`}>
         <AuthForm onSubmitBtnClick={handleSubmit} mainColor={mainColor} />
       </div>
     </Section>

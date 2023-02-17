@@ -16,10 +16,6 @@
     text-align: center;
 }
 
-.is-relative {
-    position: relative;
-}
-
 .is-absolute {
     position: absolute;
     bottom: -10px;
@@ -39,4 +35,11 @@
 
 .has-full-height {
     min-height: 100vh;
+}
+.has-max-width {
+    max-width: 560px;
+}
+
+.container {
+    max-width: 780px;
 }

@@ -5,6 +5,7 @@ import { EQUITY_CODE } from 'constants';
 import AddEquityForm from 'components/AddEquityForm/AddEquityForm';
 import EquityList from 'components/EquityList/EquityList';
 import Section from 'components/Section/Section';
+import Rat from 'assets/images/rat3.png';
 
 const EquitiesPage = () => {
   const equities = useSelector(selectSortedEquities);
@@ -18,12 +19,19 @@ const EquitiesPage = () => {
   const mainColor = 'info';
   return (
     <Section text="Equities" mainColor={mainColor}>
-      <div className={`box has-background-${mainColor}-dark`}>
-        <AddEquityForm
-          categories={EQUITY_CODE}
-          onSubmitBtnClick={onSubmitBtnClick}
-          mainColor={mainColor}
-        />
+      <div className="columns m-0 mb-5">
+        <div className={`box has-background-${mainColor}-dark column mb-0`}>
+          <AddEquityForm
+            categories={EQUITY_CODE}
+            onSubmitBtnClick={onSubmitBtnClick}
+            mainColor={mainColor}
+          />
+        </div>
+        <div className="column p-0 is-one-quarter is-hidden-mobile is-align-self-flex-end">
+          <figure className="image is-128x128 ml-auto">
+            <img src={Rat} alt="Rat" />
+          </figure>
+        </div>
       </div>
       <div className={`box has-min-height has-background-${mainColor}`}>
         <EquityList

@@ -11,7 +11,7 @@ const RegisterPage = () => {
   const mainColor = 'primary';
   return (
     <Section text="Registration" mainColor={mainColor}>
-      <div className={`box has-background-${mainColor}`}>
+      <div className={`box has-background-${mainColor} has-max-width mx-auto`}>
         <AuthForm onSubmitBtnClick={handleSubmit} mainColor={mainColor} />
       </div>
     </Section>
