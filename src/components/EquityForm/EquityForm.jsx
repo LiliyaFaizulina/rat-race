@@ -2,7 +2,18 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import CategorySelect from 'components/CategorySelect/CategorySelect';
 
-const AddEquityForm = ({ categories, onSubmitBtnClick, mainColor }) => {
+const AddEquityForm = ({
+  categories,
+  onSubmitBtnClick,
+  mainColor,
+  classes = '',
+  equity = {
+    code: '',
+    quantity: '',
+    price: '',
+  },
+  toUpdate,
+}) => {
   const validationSchema = yup.object().shape({
     code: yup.string().required('Code is required'),
     quantity: yup
@@ -18,9 +29,9 @@ const AddEquityForm = ({ categories, onSubmitBtnClick, mainColor }) => {
   });
   const { handleSubmit, values, handleChange, errors, resetForm } = useFormik({
     initialValues: {
-      code: '',
-      quantity: '',
-      price: '',
+      code: equity.code,
+      quantity: equity.quantity,
+      price: equity.price,
     },
     validationSchema,
     onSubmit: values => {
@@ -29,7 +40,7 @@ const AddEquityForm = ({ categories, onSubmitBtnClick, mainColor }) => {
     },
   });
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={classes}>
       <div className="field is-relative pb-2 mb-1">
         <label className="label">Category</label>
         <CategorySelect
@@ -38,6 +49,7 @@ const AddEquityForm = ({ categories, onSubmitBtnClick, mainColor }) => {
           value={values.code}
           handleChange={handleChange}
           mainColor={mainColor}
+          toUpdate={toUpdate}
         />
         <p className="help is-absolute has-text-grey-lighter">{errors.code}</p>
       </div>

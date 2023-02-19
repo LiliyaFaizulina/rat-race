@@ -1,7 +1,12 @@
 import Equity from './Equity';
 import { chooseCategoryColor } from 'helpers';
 
-const EquityList = ({ equities, onDeleteBtnClick, mainColor }) => {
+const EquityList = ({
+  equities,
+  onDeleteBtnClick,
+  mainColor,
+  openUpdateModal,
+}) => {
   return (
     <table className="table is-fullwidth">
       <thead className={`has-background-${mainColor}`}>
@@ -9,7 +14,7 @@ const EquityList = ({ equities, onDeleteBtnClick, mainColor }) => {
           <th>Name</th>
           <th>Num</th>
           <th>Price</th>
-          <th>Sum</th>
+          <th className="text-align">Upd</th>
           <th className="text-align">Del</th>
         </tr>
       </thead>
@@ -24,6 +29,7 @@ const EquityList = ({ equities, onDeleteBtnClick, mainColor }) => {
             >
               <Equity
                 item={item}
+                openUpdateModal={openUpdateModal}
                 onDeleteBtnClick={onDeleteBtnClick}
                 mainColor={mainColor}
               />

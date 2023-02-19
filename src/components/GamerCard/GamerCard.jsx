@@ -15,6 +15,7 @@ const GamerCard = ({ data, mainColor }) => {
     { name: 'Dream cost', fieldType: 'number', fieldName: 'dreamCost' },
     { name: 'Children', fieldType: 'number', fieldName: 'children' },
     { name: 'Debt', fieldType: 'number', fieldName: 'debt' },
+    { name: 'Notes', fieldType: 'text', fieldName: 'note' },
   ];
 
   const onSubmitBtnClick = values => {
@@ -32,31 +33,36 @@ const GamerCard = ({ data, mainColor }) => {
       {cardFields.map(({ fieldName, fieldType, name }, index) => (
         <li
           key={index}
-          className={`columns is-mobile m-0 has-background-${mainColor}-light is-align-items-center`}
+          className={`columns is-mobile m-0  is-align-items-center`}
         >
           <div
             className={`column is-one-third m-0 has-background-${mainColor}`}
           >
             {name}:
           </div>
-          {fieldToUpdate && fieldToUpdate === fieldName ? (
-            <UpdateGamerForm
-              fieldValue={data[fieldName]}
-              fieldType={fieldType}
-              fieldName={fieldName}
-              onSubmitBtnClick={onSubmitBtnClick}
-            />
-          ) : (
-            <>
-              <div className="column auto">{data[fieldName]}</div>
-              <button
-                onClick={() => showInput(fieldName)}
-                className={`column is-one-fifth button is-flex is-${mainColor} is-inverted has-background-${mainColor}-light`}
-              >
-                <RxUpdate className="icon is-small" />
-              </button>
-            </>
-          )}
+          <div
+            className={`column columns p-0 m-0 is-mobile has-background-${mainColor}-light`}
+          >
+            {fieldToUpdate && fieldToUpdate === fieldName ? (
+              <UpdateGamerForm
+                fieldValue={data[fieldName]}
+                fieldType={fieldType}
+                fieldName={fieldName}
+                mainColor={mainColor}
+                onSubmitBtnClick={onSubmitBtnClick}
+              />
+            ) : (
+              <>
+                <div className={`column auto`}>{data[fieldName]}</div>
+                <button
+                  onClick={() => showInput(fieldName)}
+                  className={`column is-one-fifth button is-flex is-${mainColor} is-inverted has-background-${mainColor}-light`}
+                >
+                  <RxUpdate className="icon is-small" />
+                </button>
+              </>
+            )}
+          </div>
         </li>
       ))}
     </ul>

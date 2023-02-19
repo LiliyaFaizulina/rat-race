@@ -7,6 +7,7 @@ const UpdateGamerForm = ({
   fieldType,
   fieldValue,
   onSubmitBtnClick,
+  mainColor,
 }) => {
   const validationSchema =
     fieldType === 'text'
@@ -35,20 +36,33 @@ const UpdateGamerForm = ({
   return (
     <form
       onSubmit={handleSubmit}
-      className="columns column is-mobile is-two-third p-0 m-0"
+      className={`columns column is-mobile is-two-third p-0 m-0 has-background-${mainColor}-light`}
     >
-      <label className="column is-8 p-0">
-        <input
-          className="input is-primary"
-          type={fieldType}
-          name={fieldName}
-          value={values[fieldName]}
-          onChange={handleChange}
-        />
+      <label className="column is-auto pt-0 pb-2 px-1 is-relative">
+        {fieldName === 'note' ? (
+          <textarea
+            className="textarea is-primary"
+            rows="2"
+            name={fieldName}
+            value={values[fieldName]}
+            onChange={handleChange}
+          >
+            {values[fieldName]}
+          </textarea>
+        ) : (
+          <input
+            className="input is-primary"
+            type={fieldType}
+            name={fieldName}
+            value={values[fieldName]}
+            onChange={handleChange}
+          />
+        )}
+        <p className="help is-absolute has-text-grey">{errors[fieldName]}</p>
       </label>
       <button
         type="submit"
-        className="button is-primary is-outlined is-flex column is-auto ml-2"
+        className={`column is-one-fifth button is-flex is-${mainColor} is-inverted has-background-${mainColor}-light`}
       >
         <RxCheck className="icon" />
       </button>

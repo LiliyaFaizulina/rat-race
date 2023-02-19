@@ -15,7 +15,6 @@ export const chooseCategoryColor = category => {
     case EQUITY_CODE[1]:
       return 'info';
     case 2:
-    case INCOME_CATEGORIES[2]:
     case EXPENSE_CATEGORIES[3]:
     case EXPENSE_CATEGORIES[4]:
     case EQUITY_CODE[2]:
@@ -25,13 +24,14 @@ export const chooseCategoryColor = category => {
     case EXPENSE_CATEGORIES[8]:
     case EXPENSE_CATEGORIES[9]:
     case EQUITY_CODE[3]:
-      return 'danger';
+      return 'primary';
     case 4:
+    case INCOME_CATEGORIES[2]:
     case EXPENSE_CATEGORIES[6]:
     case EXPENSE_CATEGORIES[7]:
     case EQUITY_CODE[4]:
       return 'link';
     default:
-      return 'primary';
+      return 'danger';
   }
 };

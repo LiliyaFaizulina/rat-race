@@ -3,11 +3,7 @@ import * as yup from 'yup';
 
 const AuthForm = ({ onSubmitBtnClick, mainColor }) => {
   const validationSchema = yup.object().shape({
-    name: yup
-      .string()
-      .required('Name is required')
-      .min(2, 'Min two letters')
-      .max(7, 'Max seven letters'),
+    name: yup.string().required('Name is required').min(2, 'Min two letters'),
     password: yup
       .string()
       .required('Password is required')

@@ -20,6 +20,7 @@ const initialState = {
     dreamCost: 0,
     debt: 0,
     children: 0,
+    note: '',
   },
   token: null,
   isLoading: false,

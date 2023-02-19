@@ -22,7 +22,7 @@ const Layout = () => {
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-      <ToastContainer />
+      <ToastContainer draggablePercent={60} hideProgressBar theme="colored" />
     </div>
   );
 };

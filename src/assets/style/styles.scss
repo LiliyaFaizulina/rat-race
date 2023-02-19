@@ -43,3 +43,17 @@
 .container {
     max-width: 780px;
 }
+
+.is-crossed-out{
+    text-decoration: 2px line-through red;
+}
+
+.Toastify__toast-theme--colored.Toastify__toast--success {
+    background-color: $success;
+}
+.Toastify__toast-theme--colored.Toastify__toast--warning {
+    background-color: $warning;
+}
+.Toastify__toast-theme--colored.Toastify__toast--error {
+    background-color: $danger;
+}
